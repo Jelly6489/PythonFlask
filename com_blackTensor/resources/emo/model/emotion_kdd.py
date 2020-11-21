@@ -27,7 +27,7 @@ keyword = input("검색어 입력: ")
 # s_date = input("시작날짜 입력(예: 2020.07.20):")
 # e_date = input("끝날짜 입력(예: 2020.10.30):")
 # info_main = input("="*50+"\n"+"입력 형식에 맞게 입력해주세요."+"\n"+"시작하시려면 Enter를 눌러주세요."+"\n"+"="*50)
-maxpage = 3100
+maxpage = 20
 # keyword = "대한항공"
 order = "0"
 s_date = "2020.01.01"
