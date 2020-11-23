@@ -43,6 +43,8 @@ class EmotionDfo(object):
         lists = file.readlines()
         file.close()
         
+        # print(f'lists : {lists}')
+
         twitter = Twitter()
         morphs = []
 
@@ -53,8 +55,10 @@ class EmotionDfo(object):
 
         while True:
             line = pos.readline()
-            line = line.replace('\n', '')
+            line = line.replace('\r\n', '')
             positive_word.append(line)
+            print('==========확인1==========')
+            print(f'pos line : {line}')
 
             if not line: break
         pos.close()
@@ -63,11 +67,16 @@ class EmotionDfo(object):
 
         while True:
             line = neg.readline()
-            line = line.replace('\n', '')
+            line = line.replace('\r\n', '')
             negative_word.append(line)
+            print('==========확인2==========')
+            print(f'neg line : {line}')
 
             if not line: break
         neg.close()
+
+        print(f'positive_word : {positive_word}')
+        print(f'negative_word : {negative_word}')
 
         for sentence in morphs : 
             for word, text_tag in sentence :
@@ -75,10 +84,12 @@ class EmotionDfo(object):
                     noun_list.append(word)
                     for x in positive_word:
                         if x == word: 
+                            # print(f'append poflag. word : {word}')
                             poflag.append(x)
                         
                     for y in negative_word:
                         if y == word:
+                            # print(f'append neflag. word : {word}')
                             neflag.append(y)
                 '''
                 #         print("부정적 :", y)
@@ -117,6 +128,10 @@ class EmotionDfo(object):
                 #     ("역대" not in word) and ("상승" not in word) and ("늘어" not in word) and ("승인" not in word):
                 #     negative_word.append(word)
                 '''
+        ##
+        print(f'poflag : {poflag}')
+        print(f'neflag : {neflag}')
+        ##
         count_po = Counter(poflag)
         count_ne = Counter(neflag)
         po_words = dict(count_po.most_common())

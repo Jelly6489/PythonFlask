@@ -11,6 +11,7 @@ from flask_restful import Resource, reqparse
 from sqlalchemy import func
 import json
 from datetime import datetime
+# from main import keyword
 
 from sqlalchemy import Column, Integer, String, Date
 # import time
@@ -22,13 +23,20 @@ from sqlalchemy import Column, Integer, String, Date
 # ============================================================
 # info_main = input("="*50+"\n"+"입력 형식에 맞게 입력해주세요."+"\n"+"시작하시려면 Enter를 눌러주세요."+"\n"+"="*50)
 # maxpage = int(input("최대 크롤링할 페이지 수 입력하시오: "))
-keyword = input("검색어 입력: ")
+# keyword = input("검색어 입력: ")
+# keyword = ["삼성전자", "셀트리온", "하나투어"]
+# for k, m in enumerate(keyword):
+#     if m == "삼성전자":
+#         EmotionKdd.naver_news()
+#         print(m)
 # order = input("뉴스 검색 방식 입력(관련도순=0 최신순=1 오래된순=2): ") #관련도순=0 최신순=1 오래된순=2
 # s_date = input("시작날짜 입력(예: 2020.07.20):")
 # e_date = input("끝날짜 입력(예: 2020.10.30):")
 # info_main = input("="*50+"\n"+"입력 형식에 맞게 입력해주세요."+"\n"+"시작하시려면 Enter를 눌러주세요."+"\n"+"="*50)
 maxpage = 20
-# keyword = "대한항공"
+keyword = "삼성전자"
+# keyword2
+# keyword3
 order = "0"
 s_date = "2020.01.01"
 # e_date = "2020.11.10"
@@ -39,7 +47,7 @@ class EmotionKdd(object):
     def __init__(self):
         self.info_main = info_main
         self.maxpage = maxpage
-        self.keyword = keyword
+        # self.keyword = keyword
         self.order = order
         self.s_date = s_date
         self.e_date = e_date
@@ -120,15 +128,61 @@ class EmotionKdd(object):
     # print("크롤링 날짜!! :",date_text)
 
     # result = naver_news(object, keyword, 1)
-    result = naver_news(object, maxpage, keyword, order, s_date, e_date)
+    # ===================================================================================
+    # for m in enumerate(keyword):
+    #     if m == "삼성전자":
+    #         result = naver_news(object, maxpage, m, order, s_date, e_date)
+    #         print(m)
+    #         df = pd.DataFrame(result)
+    #         # print(df)
+    #         df.columns = ['title']
+    #         df.loc[:, 'keyword'] = m
+    #         print('--------EmotionKdd-----------')
+    #         print(df.head())
+    #         df.to_csv('./csv/{}.csv'.format(keyword), encoding='utf-8-sig')
+    #     if m == "셀트리온":
+    #         result = naver_news(object, maxpage, m, order, s_date, e_date)
+    #         print(m)
+    #         df = pd.DataFrame(result)
+    #         # print(df)
+    #         df.columns = ['title']
+    #         df.loc[:, 'keyword'] = m
+    #         print('--------EmotionKdd-----------')
+    #         print(df.head())
+    #         df.to_csv('./csv/{}.csv'.format(keyword), encoding='utf-8-sig')
+    #     if m == "하나투어":
+    #         result = naver_news(object, maxpage, m, order, s_date, e_date)
+    #         print(m)
+    #         df = pd.DataFrame(result)
+    #         # print(df)
+    #         df.columns = ['title']
+    #         df.loc[:, 'keyword'] = m
+    #         print('--------EmotionKdd-----------')
+    #         print(df.head())
+    #         print(type(df))
+    #         df.to_csv('./csv/{}.csv'.format(keyword), encoding='utf-8-sig')
+
+    # ===================================================================================
+        # print(m)
+    # result = naver_news(object, maxpage, keyword, order, s_date, e_date)
     # print(result)
-    df = pd.DataFrame(result)
-    # print(df)
-    df.columns = ['title']
-    df.loc[:, 'keyword'] = keyword
-    print('--------EmotionKdd-----------')
-    print(df.head())
-    df.to_csv('./csv/{}.csv'.format(keyword), encoding='utf-8-sig')
+    # df = pd.DataFrame(result)
+    # # print(df)
+    # df.columns = ['title']
+    # df.loc[:, 'keyword'] = keyword
+    # print('--------EmotionKdd-----------')
+    # print(df.head())
+    # df.to_csv('./csv/{}.csv'.format(keyword), encoding='utf-8-sig')
+
+# if __name__ == '__main__':
+#     for k, m in enumerate(keyword):
+#         if m == "삼성전자": ㅑㄴ 
+#             EmotionKdd.naver_news()
+#         if m == "셀트리온":
+#             EmotionKdd.naver_news()
+#         if m == "하나투어":
+#             EmotionKdd.naver_news()
+#         print(m)
 '''
 0   논어, 새로운 가르침에 겁내지 않으려면 그간의 가르침을 실행해야 한다!       
 1  "전 세계 AI 전문가 모여라"…'삼성 AI 포럼 2020' 온라인 개최

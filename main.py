@@ -55,13 +55,19 @@ db.init_app(app)
 
 api = Api(app)
 
+
+
 if __name__ == '__main__':
+    # keyword = ["삼성전자", "셀트리온", "하나투어"]
+    # for k, m in enumerate(keyword):
+    # print(m)
     code_df = FinanceKdd()
     # EmotionDfo.data_pro(0, keyword)
     EmotionDfo.data_pro(0, keyword)
     FinanceKdd.get_finance(0, keyword, code_df)
     ExchangeKdd.market_index_kdd(0)
     ExchangeDfo.get_ex_df(0)
+
     # FinanceDfo.fina_pro(keyword)
 
 with app.app_context():
