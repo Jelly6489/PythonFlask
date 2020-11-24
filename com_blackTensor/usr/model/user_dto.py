@@ -49,7 +49,8 @@ class ReviewDto(db.Model):
     __tablename__ = 'review'
     __table_args__={'mysql_collate':'utf8_general_ci'}
 
-    name: str = db.Column(db.String(100), primary_key = True, index = True)
+    username: str = db.Column(db.String(100), primary_key = True, index = True)
+    stockname: str = db.Column(db.String(100))
     money: int = db.Column(db.Integer)
     type: str = db.Column(db.String(10))
     date: str = db.Column(db.String(100))
@@ -57,7 +58,8 @@ class ReviewDto(db.Model):
     cnt: int = db.Column(db.Integer)
 
     # def __init__(self, name, money, type, date, price, cnt):
-    #     self.name = name
+    #     self.username = username
+    #     self.stockname = stockname
     #     self.money = money
     #     self.type = type
     #     self.date = date
@@ -65,18 +67,19 @@ class ReviewDto(db.Model):
     #     self.cnt = cnt
 
     def __repr__(self):
-        return f"Review(name={self.name}, money={self.money}, type={self.type}, \
-        date={self.date}, price={self.price}, cnt={self.cnt})"
+        return f"Review(username={self.username}, stockname={self.stockname}, money={self.money}, \
+             type={self.type}, date={self.date}, price={self.price}, cnt={self.cnt})"
 
     
     def __str__(self):
-        return f"Review(name={self.name}, money={self.money}, type={self.type}, \
-        date={self.date}, price={self.price}, cnt={self.cnt})"
+        return f"Review(username={self.username}, stockname={self.stockname}, money={self.money}, \
+             type={self.type}, date={self.date}, price={self.price}, cnt={self.cnt})"
 
     @property
     def json(self):
         return {
-            "name" : self.name,
+            "username" : self.username,
+            "stockname" : self.stockname,
             "money" : self.money,
             "type" : self.type,
             "date" : self.date,
@@ -85,7 +88,8 @@ class ReviewDto(db.Model):
         }
 
 class ReviewVo:
-    name: str =  ""
+    username: str = ""
+    stockname: str =  ""
     money: int = 0
     type: str = ""
     date: str = ""

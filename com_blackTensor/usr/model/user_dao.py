@@ -149,14 +149,14 @@ class ReviewDao(ReviewDto):
     #     session.commit()
 
     @classmethod
-    def delete(cls, name):
-        data = cls.query.get(name)
+    def delete(cls, username):
+        data = cls.query.get(username)
         db.session.delete(data)
         db.session.commit()
 
     @classmethod
     def count(cls):
-        return session.query(func.count(cls.name)).one()
+        return session.query(func.count(cls.username)).one()
 
     @classmethod
     def find_all(cls):
@@ -172,11 +172,11 @@ class ReviewDao(ReviewDto):
     # for WHERE clause in the SELECT expression.
     
     @classmethod
-    def find_one(cls, name):
+    def find_one(cls, username):
         return session.query(cls)\
-            .filter(cls.name == name).one()
+            .filter(cls.username == username).one()
 
     @classmethod
-    def find_by_name(cls, name):
-        return session.query(cls).filter(cls.name.like(f'{name}')).one()
+    def find_by_name(cls, username):
+        return session.query(cls).filter(cls.username.like(f'{username}')).one()
 

@@ -36,17 +36,17 @@ class Review(Resource):
         # create 구현
         review = ReviewDto(**body)
         ReviewDao.save(review)
-        name = review.name
+        username = review.username
 
-        return {'message': 'SUCCESS', 'email': str(name)}, 200
+        return {'message': 'SUCCESS', 'email': str(username)}, 200
 
     @staticmethod
-    def get(name: str):
-        print('===========name=============')
-        print(name)
+    def get(username: str):
+        print('===========username=============')
+        print(username)
         try:
-            print(f'Review Name is {name}')
-            review = ReviewDao.find_by_name(name)
+            print(f'Review Name is {username}')
+            review = ReviewDao.find_by_name(username)
             print(review)
             if review:
                 return jsonify([review.json])
@@ -58,7 +58,7 @@ class Review(Resource):
     def delete():
         print(f'[ Review Delete Resource Enter ] ')
         args = parser.parse_args()
-        print(f'Review {args["name"]} deleted')
+        print(f'Review {args["username"]} deleted')
         return {'code' : 0, 'message' : 'SUCCESS'}, 200 
 
 class Reviews(Resource):

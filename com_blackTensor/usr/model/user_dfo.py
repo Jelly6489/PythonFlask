@@ -30,7 +30,8 @@ class UserDfo(object):
         print('=========mypage==========')
         df = pd.DataFrame(
             {
-                "name": 'test111',
+                "username": 'bread',
+                "stockname": 'test111',
                 "money": 123,
                 "type": 'sdas',
                 "date": '2020-10-10',

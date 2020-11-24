@@ -16,15 +16,10 @@ class StockDto(db.Model):
     keyword : str = db.Column(db.String(10))
     def __repr__(self):
         return f"Stock(no={self.no}, date={self.date}, close={self.close}, open={self.open}, high={self.high}, low={self.low}, volume={self.volume}, keyword={self.keyword})"
-<<<<<<< HEAD
-    def __str__(self):
-        return f"Stock(no={self.no}, date={self.date}, close={self.close}, open={self.open}, high={self.high}, low={self.low}, volume={self.volume}, keyword={self.keyword})"
-=======
 
     def __str__(self):
         return f"Stock(no={self.no}, date={self.date}, close={self.close}, open={self.open}, high={self.high}, low={self.low}, volume={self.volume}, keyword={self.keyword})"
 
->>>>>>> 12c14d3019f4cea0a827fc274de689cf74e22cbb
     @property
     def json(self):
         return {
@@ -37,6 +32,7 @@ class StockDto(db.Model):
         "volume" : self.volume,
         "keyword" : self.keyword
     }
+    
 class StockVo:
     no : int = 0
     date : str = ""

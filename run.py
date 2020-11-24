@@ -7,8 +7,8 @@ import pandas as pd
 from flask_cors import CORS
 
 # CORS(app, resources={r'*': {'origins': ['https://192.168.0.10:8080/api/access', 'http://192.168.0.10:8080']}})
-# app.run(host='192.168.0.10', port='8080', debug=True)
-app.run(host='127.0.0.1', port='8080', debug=False)
+app.run(host='192.168.0.10', port='8080', debug=False)
+# app.run(host='127.0.0.1', port='8080', debug=False)
 
 '''
 from flask import Flask

@@ -68,7 +68,7 @@ def initialize_route(api):
     api.add_resource(ExchangeData, '/api/stock/exchange_data/<keyword>')
     api.add_resource(User, '/api/access', '/api/access/<user_id>')
     api.add_resource(Login, '/api/login')
-    api.add_resource(Review, '/api/mypage', '/api/mypage/<name>')
+    api.add_resource(Review, '/api/mypage', '/api/mypage/<username>')
 
 @covid.errorhandler(500)
 def user_api_error(e):
