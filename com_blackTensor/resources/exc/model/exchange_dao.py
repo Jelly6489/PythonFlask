@@ -6,6 +6,7 @@ from sqlalchemy import func
 from com_blackTensor.resources.exc.model.exchange_kdd import ExchangeKdd
 from com_blackTensor.resources.exc.model.exchange_dfo import ExchangeDfo
 from com_blackTensor.resources.exc.model.exchange_dto import ExchangeDto
+from com_blackTensor.resources.sto.model.stock_dto import StockDto
 
 
 Session = openSeesion()
@@ -38,5 +39,5 @@ class ExchangeDao(ExchangeDto):
 
     @staticmethod
     def find_by_keyword(keyword):
-        return session.query(ExchangeDto).filter(ExchangeDto.keyword.like(f'{keyword}')).all()
+        return session.query(StockDto).filter(StockDto.keyword.like(f'{keyword}')).all()
 
