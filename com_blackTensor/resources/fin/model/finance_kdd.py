@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 from pandas import DataFrame, Series
 import pandas as pd
 import numpy as np
-from com_blackTensor.resources.emo.model.emotion_kdd import keyword
+from com_blackTensor.resources.emo.model.emotion_kdd import keyword, key1, key2, key3
 
 # ============================================================
 # ==================                     =====================
@@ -164,5 +164,11 @@ class FinanceKdd(object):
         # df.to_csv(keyword + '_finance.csv', encoding='utf-8-sig')
         df.to_csv('./csv/{}_finance.csv'.format(keyword), encoding='utf-8-sig')
         return df
-
-    get_finance(0, keyword, code_df)
+    for k, m in enumerate(keyword):
+        if m == key1:
+            get_finance(0, key1, code_df)
+        if m == key2:
+            get_finance(0, key2, code_df)
+        if m == key3:
+            get_finance(0, key3, code_df)
+    # get_finance(0, keyword, code_df)

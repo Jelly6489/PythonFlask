@@ -8,7 +8,7 @@ from konlpy.tag import Twitter
 from collections import Counter
 
 from com_blackTensor.util.file_hander import FileHandler
-from com_blackTensor.resources.emo.model.emotion_kdd import keyword
+from com_blackTensor.resources.emo.model.emotion_kdd import keyword, key1, key2, key3
 # # ============================================================
 # # ==================                     =====================
 # # ==================    Preprocessing    =====================
@@ -35,7 +35,6 @@ class EmotionDfo(object):
         po_val = []
         ne_val = []
 
-
         # file = open('{}.csv'.format(keyword), 'r', encoding='utf-8-sig')
         file = open('./csv/{}.csv'.format(keyword), 'r', encoding='utf-8-sig')
         
@@ -57,8 +56,8 @@ class EmotionDfo(object):
             line = pos.readline()
             line = line.replace('\r\n', '')
             positive_word.append(line)
-            print('==========확인1==========')
-            print(f'pos line : {line}')
+            # print('==========확인1==========')
+            # print(f'pos line : {line}')
 
             if not line: break
         pos.close()
@@ -69,14 +68,14 @@ class EmotionDfo(object):
             line = neg.readline()
             line = line.replace('\r\n', '')
             negative_word.append(line)
-            print('==========확인2==========')
-            print(f'neg line : {line}')
+            # print('==========확인2==========')
+            # print(f'neg line : {line}')
 
             if not line: break
         neg.close()
 
-        print(f'positive_word : {positive_word}')
-        print(f'negative_word : {negative_word}')
+        # print(f'positive_word : {positive_word}')
+        # print(f'negative_word : {negative_word}')
 
         for sentence in morphs : 
             for word, text_tag in sentence :
@@ -129,8 +128,8 @@ class EmotionDfo(object):
                 #     negative_word.append(word)
                 '''
         ##
-        print(f'poflag : {poflag}')
-        print(f'neflag : {neflag}')
+        # print(f'poflag : {poflag}')
+        # print(f'neflag : {neflag}')
         ##
         count_po = Counter(poflag)
         count_ne = Counter(neflag)
@@ -175,8 +174,6 @@ class EmotionDfo(object):
         # df.to_csv(keyword + '_word.csv', encoding='utf-8-sig')
         df.to_csv('./csv/{}_word.csv'.format(keyword), encoding='utf-8-sig')
         # df.to_csv('./csv/{}_finance.csv'.format(keyword), encoding='utf-8-sig')
-        
-
 
 
         '''
@@ -195,8 +192,6 @@ class EmotionDfo(object):
         print('---------------EmotionDfo Success----------------')
         return df
 
-
-
     def get_df(self, keyword):
         
         # file = open('{}.csv'.format(keyword), 'r', encoding='utf-8-sig')
@@ -211,6 +206,14 @@ class EmotionDfo(object):
         print('-----------------get_df------------------')
         print(news_df)
         return news_df
+
         # return pd.DataFrame(data, columns=self.colums)
-    data_pro(0, keyword)
+
+    for k, m in enumerate(keyword):
+        if m == key1:
+            data_pro(0, key1)
+        if m == key2:
+            data_pro(0, key2)
+        if m == key3:
+            data_pro(0, key3)
         # get_df(0, keyword)

@@ -19,7 +19,7 @@ from com_blackTensor.resources.news.covid.model.covid_news_dto import CovidNewsD
 from com_blackTensor.resources.news.economy.model.economy_dto import EconomyNewsDto, EconomyExtractionWordDto
 
 # =============================== Emotion ===============================
-from com_blackTensor.resources.emo.model.emotion_kdd import keyword
+from com_blackTensor.resources.emo.model.emotion_kdd import keyword, key1, key2, key3
 from com_blackTensor.resources.emo.model.emotion_dao import EmotionDao, StockNewsDao
 from com_blackTensor.resources.emo.model.emotion_dfo import EmotionDfo
 from com_blackTensor.resources.emo.model.emotion_kdd import EmotionKdd
@@ -100,25 +100,53 @@ with app.app_context():
     if emotion_count[0] == 0:
         EmotionDao.bulk()
     else :
-        EmotionDao.find_keyword(keyword)
+        for k, m in enumerate(keyword):
+            if m == key1:
+                EmotionDao.find_keyword(key1)
+            if m == key2:
+                EmotionDao.find_keyword(key2)
+            if m == key3:
+                EmotionDao.find_keyword(key2)
+        # EmotionDao.find_keyword(keyword)
 
     print(f'***** StockNews Total Count is {stock_new_count} *****')
     if stock_new_count[0] == 0:
         StockNewsDao.bulk()
     else :
-        StockNewsDao.find_keyword(keyword)
+        for k, m in enumerate(keyword):
+            if m == key1:
+                StockNewsDao.find_keyword(key1)
+            if m == key2:
+                StockNewsDao.find_keyword(key2)
+            if m == key3:
+                StockNewsDao.find_keyword(key3)
+        # StockNewsDao.find_keyword(keyword)
 
     print(f'***** Stock Total Count is {stock_count} *****')
     if stock_count[0] == 0:
         StockDao.bulk()
     else :
-        StockDao.find_keyword(keyword)
+        for k, m in enumerate(keyword):
+            if m == key1:
+                StockDao.find_keyword(key1)
+            if m == key2:
+                StockDao.find_keyword(key2)
+            if m == key3:
+                StockDao.find_keyword(key3)
+        # StockDao.find_keyword(keyword)
 
     print(f'***** Finance Total Count is {finance_count} *****')
     if finance_count[0] == 0:
         FinanceDao.bulk()
     else :
-        FinanceDao.find_keyword(keyword)
+        for k, m in enumerate(keyword):
+            if m == key1:
+                FinanceDao.find_keyword(key1)
+            if m == key2:
+                FinanceDao.find_keyword(key2)
+            if m == key3:
+                FinanceDao.find_keyword(key3)
+        # FinanceDao.find_keyword(keyword)
 
     print(f'***** Exchange Total Count is {exchange_count} *****')
     if exchange_count[0] == 0:

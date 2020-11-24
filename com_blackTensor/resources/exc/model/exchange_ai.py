@@ -6,11 +6,11 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import LSTM, Dropout, Dense, Activation
 from keras.callbacks import TensorBoard, ModelCheckpoint, ReduceLROnPlateau
 # from sklearn.preprocessing import MinMaxScaler
-from com_blackTensor.resources.emo.model.emotion_kdd import keyword
+from com_blackTensor.resources.emo.model.emotion_kdd import keyword, key1, key2, key3
 import datetime
 
 class ExchangeAi(object):
-    def create_usd(self): # 미국
+    def create_usd(self, keyword): # 미국
         st_data = pd.read_csv('./csv/{}_data.csv'.format(keyword), index_col=[0])
         st_data.drop(['keyword'], axis='columns', inplace=True)
         ex_data = pd.read_csv('./csv/exchange_reindex.csv', index_col=[0])
@@ -79,9 +79,15 @@ class ExchangeAi(object):
         # files = {'file': open('./ai_data/{}_LSTM_USD.png'.format(keyword), 'rb')}
         # r = requests.post(url, files=files)
         # ==========================================
-    create_usd(0)
-
-    def create_jpy(self): # 일본
+    # create_usd(0)
+    for k, m in enumerate(keyword):
+        if m == key1:
+            create_usd(0, key1)
+        if m == key2:
+            create_usd(0, key2)
+        if m == key3:
+            create_usd(0, key3)
+    def create_jpy(self, keyword): # 일본
         st_data = pd.read_csv('./csv/{}_data.csv'.format(keyword), index_col=[0])
         st_data.drop(['keyword'], axis='columns', inplace=True)
         ex_data = pd.read_csv('./csv/exchange_reindex.csv', index_col=[0])
@@ -146,9 +152,15 @@ class ExchangeAi(object):
         fig = plt.gcf()
         fig.savefig('./ai_data/{}_LSTM_JPY.png'.format(keyword), dpi=fig.dpi)
         # plt.show()
-    create_jpy(0)
-
-    def create_eur(self): # 유럽 연합
+    # create_jpy(0)
+    for k, m in enumerate(keyword):
+        if m == key1:
+            create_jpy(0, key1)
+        if m == key2:
+            create_jpy(0, key2)
+        if m == key3:
+            create_jpy(0, key3)
+    def create_eur(self, keyword): # 유럽 연합
         st_data = pd.read_csv('./csv/{}_data.csv'.format(keyword), index_col=[0])
         st_data.drop(['keyword'], axis='columns', inplace=True)
         ex_data = pd.read_csv('./csv/exchange_reindex.csv', index_col=[0])
@@ -213,9 +225,15 @@ class ExchangeAi(object):
         fig = plt.gcf()
         fig.savefig('./ai_data/{}_LSTM_EUR.png'.format(keyword), dpi=fig.dpi)
         # plt.show()
-    create_eur(0)
-
-    def create_cny(self): # 중국
+    # create_eur(0)
+    for k, m in enumerate(keyword):
+        if m == key1:
+            create_eur(0, key1)
+        if m == key2:
+            create_eur(0, key2)
+        if m == key3:
+            create_eur(0, key3)
+    def create_cny(self, keyword): # 중국
         st_data = pd.read_csv('./csv/{}_data.csv'.format(keyword), index_col=[0])
         st_data.drop(['keyword'], axis='columns', inplace=True)
         ex_data = pd.read_csv('./csv/exchange_reindex.csv', index_col=[0])
@@ -280,9 +298,15 @@ class ExchangeAi(object):
         fig = plt.gcf()
         fig.savefig('./ai_data/{}_LSTM_CNY.png'.format(keyword), dpi=fig.dpi)
         # plt.show()
-    create_cny(0)
-
-    def create_all(self): # All
+    # create_cny(0)
+    for k, m in enumerate(keyword):
+        if m == key1:
+            create_cny(0, key1)
+        if m == key2:
+            create_cny(0, key2)
+        if m == key3:
+            create_cny(0, key3)
+    def create_all(self, keyword): # All
         st_data = pd.read_csv('./csv/{}_data.csv'.format(keyword), index_col=[0])
         st_data.drop(['keyword'], axis='columns', inplace=True)
         ex_data = pd.read_csv('./csv/exchange_reindex.csv', index_col=[0])
@@ -347,9 +371,15 @@ class ExchangeAi(object):
         fig = plt.gcf()
         fig.savefig('./ai_data/{}_LSTM_All.png'.format(keyword), dpi=fig.dpi)
         # plt.show()
-    create_all(0)
-
-    def create_usd_cny(self): # 미국, 중국
+    # create_all(0)
+    for k, m in enumerate(keyword):
+        if m == key1:
+            create_all(0, key1)
+        if m == key2:
+            create_all(0, key2)
+        if m == key3:
+            create_all(0, key3)
+    def create_usd_cny(self, keyword): # 미국, 중국
         st_data = pd.read_csv('./csv/{}_data.csv'.format(keyword), index_col=[0])
         st_data.drop(['keyword'], axis='columns', inplace=True)
         ex_data = pd.read_csv('./csv/exchange_reindex.csv', index_col=[0])
@@ -414,8 +444,14 @@ class ExchangeAi(object):
         fig = plt.gcf()
         fig.savefig('./ai_data/{}_LSTM_USD_CNY.png'.format(keyword), dpi=fig.dpi)
         # plt.show()
-    create_usd_cny(0)
-
+    # create_usd_cny(0)
+    for k, m in enumerate(keyword):
+        if m == key1:
+            create_usd_cny(0, key1)
+        if m == key2:
+            create_usd_cny(0, key2)
+        if m == key3:
+            create_usd_cny(0, key3)
     # ======================================================================================================
 
     # def create_test(self): # Test

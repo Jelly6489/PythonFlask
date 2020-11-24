@@ -8,7 +8,7 @@ from sqlalchemy import func
 from com_blackTensor.resources.fin.model.finance_kdd import FinanceKdd
 from com_blackTensor.resources.fin.model.finance_dfo import FinanceDfo
 from com_blackTensor.resources.fin.model.finance_dto import FinanceDto
-from com_blackTensor.resources.emo.model.emotion_kdd import keyword
+from com_blackTensor.resources.emo.model.emotion_kdd import keyword, key1, key2, key3
 Session = openSeesion()
 session = Session()
 
@@ -17,10 +17,30 @@ class FinanceDao(FinanceDto):
     @staticmethod
     def bulk():
         finance_dfo = FinanceDfo()
-        dfo = finance_dfo.fina_pro(keyword)
-        session.bulk_insert_mappings(FinanceDto, dfo.to_dict(orient='records'))
-        session.commit()
-        session.close()
+        finance = session.query(FinanceDto).filter(FinanceDto.keyword.like(f'%{keyword}%')).all()
+        for k, m in enumerate(keyword):
+            if m == key1:
+                if finance == []:
+                    dfo = finance_dfo.fina_pro(key1)
+                    session.bulk_insert_mappings(FinanceDto, dfo.to_dict(orient='records'))
+                    session.commit()
+                    session.close()
+            if m == key2:
+                if finance == []:
+                    dfo = finance_dfo.fina_pro(key2)
+                    session.bulk_insert_mappings(FinanceDto, dfo.to_dict(orient='records'))
+                    session.commit()
+                    session.close()
+            if m == key3:
+                if finance == []:
+                    dfo = finance_dfo.fina_pro(key3)
+                    session.bulk_insert_mappings(FinanceDto, dfo.to_dict(orient='records'))
+                    session.commit()
+                    session.close()
+        # dfo = finance_dfo.fina_pro(keyword)
+        # session.bulk_insert_mappings(FinanceDto, dfo.to_dict(orient='records'))
+        # session.commit()
+        # session.close()
     
     @classmethod
     def count(cls):
@@ -31,11 +51,11 @@ class FinanceDao(FinanceDto):
         # return session.query(cls).all()
         return session.query(cls).filter(cls.keyword.like(f'%{keyword}%')).all()
 
-    @classmethod
-    def find_keyword(cls, keyword):
+    @staticmethod
+    def find_keyword(keyword):
         print('==============find_update==============')
-        finance = session.query(cls).filter(cls.keyword.like(f'%{keyword}%')).all()
-        if finance != 0:
+        finance = session.query(FinanceDto).filter(FinanceDto.keyword.like(f'%{keyword}%')).all()
+        if finance != []:
             print('============중복 검사===========')
         if finance == []:
             print('============행복회로 가동===========')

@@ -15,7 +15,7 @@ from sqlalchemy import Column, Integer, String, Date
 from com_blackTensor.resources.emo.model.emotion_kdd import EmotionKdd
 from com_blackTensor.resources.emo.model.emotion_dto import EmotionDto, StockNewsDto
 from com_blackTensor.resources.emo.model.emotion_dfo import EmotionDfo
-from com_blackTensor.resources.emo.model.emotion_kdd import keyword
+from com_blackTensor.resources.emo.model.emotion_kdd import keyword, key1, key2, key3
 
 # import time
 # import multiprocessing
@@ -28,10 +28,26 @@ class EmotionDao(EmotionDto):
     @staticmethod
     def bulk():
         emotion_dfo = EmotionDfo()
-        dfo = emotion_dfo.data_pro(keyword)
-        session.bulk_insert_mappings(EmotionDto, dfo.to_dict(orient='records'))
-        session.commit()
-        session.close()
+        emotion = session.query(EmotionDto).filter(EmotionDto.keyword.like(f'%{keyword}%')).all()
+        for k, m in enumerate(keyword):
+            if m == key1:
+                if emotion == []:
+                    dfo = emotion_dfo.data_pro(key1)
+                    session.bulk_insert_mappings(EmotionDto, dfo.to_dict(orient='records'))
+                    session.commit()
+                    session.close()
+            if m == key2:
+                if emotion == []:
+                    dfo = emotion_dfo.data_pro(key2)
+                    session.bulk_insert_mappings(EmotionDto, dfo.to_dict(orient='records'))
+                    session.commit()
+                    session.close()
+            if m == key3:
+                if emotion == []:
+                    dfo = emotion_dfo.data_pro(key3)
+                    session.bulk_insert_mappings(EmotionDto, dfo.to_dict(orient='records'))
+                    session.commit()
+                    session.close()
 
     @staticmethod
     def save(emotion):
@@ -56,10 +72,10 @@ class EmotionDao(EmotionDto):
         # return session.query(cls).all()
         return session.query(cls).filter(cls.keyword.like(f'%{keyword}%')).all()
 
-    @classmethod
-    def find_keyword(cls, keyword):
+    @staticmethod
+    def find_keyword(keyword):
         print('==============find_update==============')
-        emotion = session.query(cls).filter(cls.keyword.like(f'%{keyword}%')).all()
+        emotion = session.query(EmotionDto).filter(EmotionDto.keyword.like(f'%{keyword}%')).all()
         if emotion != []:
             print('============중복 검사===========')
         if emotion == []:
@@ -78,10 +94,26 @@ class StockNewsDao(StockNewsDto):
     @staticmethod
     def bulk():
         emotion_dfo = EmotionDfo()
-        df = emotion_dfo.get_df(keyword)
-        session.bulk_insert_mappings(StockNewsDto, df.to_dict(orient="records"))
-        session.commit()
-        session.close()
+        stockNews = session.query(StockNewsDto).filter(StockNewsDto.keyword.like(f'%{keyword}%')).all()
+        for k, m in enumerate(keyword):
+            if m == key1:
+                if stockNews == []:
+                    df = emotion_dfo.get_df(key1)
+                    session.bulk_insert_mappings(StockNewsDto, df.to_dict(orient="records"))
+                    session.commit()
+                    session.close()
+            if m == key2:
+                if stockNews == []:
+                    df = emotion_dfo.get_df(key2)
+                    session.bulk_insert_mappings(StockNewsDto, df.to_dict(orient="records"))
+                    session.commit()
+                    session.close()
+            if m == key3:
+                if stockNews == []:
+                    df = emotion_dfo.get_df(key3)
+                    session.bulk_insert_mappings(StockNewsDto, df.to_dict(orient="records"))
+                    session.commit()
+                    session.close()
 
     @staticmethod
     def save(emotion):
@@ -106,10 +138,10 @@ class StockNewsDao(StockNewsDto):
                 cls.negative:emotion['type']})                                                        
         session.commit()
 
-    @classmethod
-    def find_keyword(cls, keyword):
+    @staticmethod
+    def find_keyword(keyword):
         print('==============find_update==============')
-        stockNews = session.query(cls).filter(cls.keyword.like(f'%{keyword}%')).all()
+        stockNews = session.query(StockNewsDto).filter(StockNewsDto.keyword.like(f'%{keyword}%')).all()
         if stockNews != []:
             print('============중복 검사===========')
 

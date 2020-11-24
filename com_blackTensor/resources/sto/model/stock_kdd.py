@@ -2,7 +2,7 @@ import csv
 import pandas as pd
 from com_blackTensor.ext.db import db, openSeesion, engine
 from sqlalchemy import func
-from com_blackTensor.resources.emo.model.emotion_kdd import keyword
+from com_blackTensor.resources.emo.model.emotion_kdd import keyword, key1, key2, key3
 from com_blackTensor.util.file_hander import FileHandler as handler
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
@@ -44,60 +44,68 @@ class StockKdd(object):
         print("요청 URL = {}".format(url))
         return url
 
-    url = get_url(0, keyword, code_df)
+    for k, m in enumerate(keyword):
+        if m == key1:
+            url = get_url(0, key1, code_df)
+        if m == key2:
+            url = get_url(0, key2, code_df)
+        if m == key3:
+            url = get_url(0, key3, code_df)
 
-    df = pd.DataFrame()
+        # url = get_url(0, keyword, code_df)
 
-    # for page in range(1, 64): 
-    for page in range(1, 125): 
-        pg_url = '{url}&page={page}'.format(url=url, page=page) 
-        df = df.append(pd.read_html(pg_url, header=0)[0], ignore_index=True)
+        df = pd.DataFrame()
 
-    df = df.dropna()
+        # for page in range(1, 64): 
+        for page in range(1, 125): 
+            pg_url = '{url}&page={page}'.format(url=url, page=page) 
+            df = df.append(pd.read_html(pg_url, header=0)[0], ignore_index=True)
 
-    # df = df.drop(columns= {'전일비', '시가', '고가', '저가'})
-    df = df.drop(columns= {'전일비'})
+        df = df.dropna()
 
-    # print(df.head())
-    print(df)
+        # df = df.drop(columns= {'전일비', '시가', '고가', '저가'})
+        df = df.drop(columns= {'전일비'})
 
-    df = df.rename(columns= {
-        '날짜': 'date', '종가': 'close', '전일비': 'diff', '시가': 'open',
-        '고가': 'high', '저가': 'low', '거래량': 'volume'
-        })
+        # print(df.head())
+        print(df)
 
-    # df.drop(['diff', 'open', 'high', 'low'], axis=1, inplace=True)
+        df = df.rename(columns= {
+            '날짜': 'date', '종가': 'close', '전일비': 'diff', '시가': 'open',
+            '고가': 'high', '저가': 'low', '거래량': 'volume'
+            })
 
-    # 데이터 타입 int 변환
-    # df[['close', 'volume']] \
-    #     = df[['close', 'volume']].astype(int)
+        # df.drop(['diff', 'open', 'high', 'low'], axis=1, inplace=True)
 
-    df[['close', 'open', 'high', 'low', 'volume']] \
-        = df[['close', 'open', 'high', 'low', 'volume']].astype(float)
+        # 데이터 타입 int 변환
+        # df[['close', 'volume']] \
+        #     = df[['close', 'volume']].astype(int)
 
-    # df.drop(['diff', 'open', 'high', 'low'], axis=0, inplace=True)
+        df[['close', 'open', 'high', 'low', 'volume']] \
+            = df[['close', 'open', 'high', 'low', 'volume']].astype(float)
 
-    # date를 date type 변환
-    mask = (df['date'] > dy) & (df['date'] <= dx)
-    filterrd_df = df.loc[mask]
-    print('==============filterrd_df===============')
-    print(filterrd_df)
+        # df.drop(['diff', 'open', 'high', 'low'], axis=0, inplace=True)
 
-    df['date'] = pd.to_datetime(df['date'])
+        # date를 date type 변환
+        mask = (df['date'] > dy) & (df['date'] <= dx)
+        filterrd_df = df.loc[mask]
+        print('==============filterrd_df===============')
+        print(filterrd_df)
 
-    # date 기준으로 내림차순 sort
-    # df = df.sort_values(by=['date'], ascending=False)
-    df = df.sort_values(by=['date'], ascending=True)
+        df['date'] = pd.to_datetime(df['date'])
 
-    df.loc[:, 'keyword'] = keyword
+        # date 기준으로 내림차순 sort
+        # df = df.sort_values(by=['date'], ascending=False)
+        df = df.sort_values(by=['date'], ascending=True)
 
-    # df.head()
-    print('-------------------- head -------------------')
-    print(df.head())
-    print('\n-------------------- 전체 -------------------')
-    print(df)
+        df.loc[:, 'keyword'] = m
 
-    # csv file 저장
-    # df.to_csv(keyword + '_data.csv', encoding='utf-8-sig')
-    df.to_csv('./csv/{}_data.csv'.format(keyword), encoding='utf-8-sig')
+        # df.head()
+        print('-------------------- head -------------------')
+        print(df.head())
+        print('\n-------------------- 전체 -------------------')
+        print(df)
+
+        # csv file 저장
+        # df.to_csv(keyword + '_data.csv', encoding='utf-8-sig')
+        df.to_csv('./csv/{}_data.csv'.format(m), encoding='utf-8-sig')
 

@@ -24,7 +24,10 @@ from sqlalchemy import Column, Integer, String, Date
 # info_main = input("="*50+"\n"+"입력 형식에 맞게 입력해주세요."+"\n"+"시작하시려면 Enter를 눌러주세요."+"\n"+"="*50)
 # maxpage = int(input("최대 크롤링할 페이지 수 입력하시오: "))
 # keyword = input("검색어 입력: ")
-# keyword = ["삼성전자", "셀트리온", "하나투어"]
+keyword = ["삼성전자", "셀트리온", "하나투어"]
+key1 = "삼성전자"
+key2 = "셀트리온"
+key3 = "하나투어"
 # for k, m in enumerate(keyword):
 #     if m == "삼성전자":
 #         EmotionKdd.naver_news()
@@ -34,7 +37,7 @@ from sqlalchemy import Column, Integer, String, Date
 # e_date = input("끝날짜 입력(예: 2020.10.30):")
 # info_main = input("="*50+"\n"+"입력 형식에 맞게 입력해주세요."+"\n"+"시작하시려면 Enter를 눌러주세요."+"\n"+"="*50)
 maxpage = 20
-keyword = "삼성전자"
+# keyword = "삼성전자"
 # keyword2
 # keyword3
 order = "0"
@@ -129,59 +132,98 @@ class EmotionKdd(object):
 
     # result = naver_news(object, keyword, 1)
     # ===================================================================================
-    # for m in enumerate(keyword):
-    #     if m == "삼성전자":
-    #         result = naver_news(object, maxpage, m, order, s_date, e_date)
-    #         print(m)
-    #         df = pd.DataFrame(result)
-    #         # print(df)
-    #         df.columns = ['title']
-    #         df.loc[:, 'keyword'] = m
-    #         print('--------EmotionKdd-----------')
-    #         print(df.head())
-    #         df.to_csv('./csv/{}.csv'.format(keyword), encoding='utf-8-sig')
-    #     if m == "셀트리온":
-    #         result = naver_news(object, maxpage, m, order, s_date, e_date)
-    #         print(m)
-    #         df = pd.DataFrame(result)
-    #         # print(df)
-    #         df.columns = ['title']
-    #         df.loc[:, 'keyword'] = m
-    #         print('--------EmotionKdd-----------')
-    #         print(df.head())
-    #         df.to_csv('./csv/{}.csv'.format(keyword), encoding='utf-8-sig')
-    #     if m == "하나투어":
-    #         result = naver_news(object, maxpage, m, order, s_date, e_date)
-    #         print(m)
-    #         df = pd.DataFrame(result)
-    #         # print(df)
-    #         df.columns = ['title']
-    #         df.loc[:, 'keyword'] = m
-    #         print('--------EmotionKdd-----------')
-    #         print(df.head())
-    #         print(type(df))
-    #         df.to_csv('./csv/{}.csv'.format(keyword), encoding='utf-8-sig')
+        # for k, m in enumerate(keyword):
+        #     if m == "삼성전자":
+        #         result = naver_news(object, maxpage, m, order, s_date, e_date)
+        #         print(m)
+        #         df = pd.DataFrame(result)
+        #         # print(df)
+        #         df.columns = ['title']
+        #         df.loc[:, 'keyword'] = m
+        #         print('--------EmotionKdd-----------')
+        #         print(df.head())
+        #         df.to_csv('./csv/{}.csv'.format(keyword), encoding='utf-8-sig')
+        #     if m == "셀트리온":
+        #         result = naver_news(object, maxpage, m, order, s_date, e_date)
+        #         print(m)
+        #         df = pd.DataFrame(result)
+        #         # print(df)
+        #         df.columns = ['title']
+        #         df.loc[:, 'keyword'] = m
+        #         print('--------EmotionKdd-----------')
+        #         print(df.head())
+        #         df.to_csv('./csv/{}.csv'.format(keyword), encoding='utf-8-sig')
+        #     if m == "하나투어":
+        #         result = naver_news(object, maxpage, m, order, s_date, e_date)
+        #         print(m)
+        #         df = pd.DataFrame(result)
+        #         # print(df)
+        #         df.columns = ['title']
+        #         df.loc[:, 'keyword'] = m
+        #         print('--------EmotionKdd-----------')
+        #         print(df.head())
+        #         print(type(df))
+        #         df.to_csv('./csv/{}.csv'.format(keyword), encoding='utf-8-sig')
 
     # ===================================================================================
         # print(m)
-    # result = naver_news(object, maxpage, keyword, order, s_date, e_date)
-    # print(result)
-    # df = pd.DataFrame(result)
-    # # print(df)
-    # df.columns = ['title']
-    # df.loc[:, 'keyword'] = keyword
-    # print('--------EmotionKdd-----------')
-    # print(df.head())
-    # df.to_csv('./csv/{}.csv'.format(keyword), encoding='utf-8-sig')
+    for k, m in enumerate(keyword):
+        if m == key1:
+            result = naver_news(object, maxpage, key1, order, s_date, e_date)
+            df = pd.DataFrame(result)
+            df.columns = ['title']
+            df.loc[:, 'keyword'] = key1
+            print('--------EmotionKdd-----------')
+            print(df.head())
+            df.to_csv('./csv/{}.csv'.format(key1), encoding='utf-8-sig')
+        if m == key2:
+            result = naver_news(object, maxpage, key2, order, s_date, e_date)
+            df = pd.DataFrame(result)
+            df.columns = ['title']
+            df.loc[:, 'keyword'] = key2
+            print('--------EmotionKdd-----------')
+            print(df.head())
+            df.to_csv('./csv/{}.csv'.format(key2), encoding='utf-8-sig')
+        if m == key3:
+            result = naver_news(object, maxpage, key3, order, s_date, e_date)
+            df = pd.DataFrame(result)
+            df.columns = ['title']
+            df.loc[:, 'keyword'] = m
+            print('--------EmotionKdd-----------')
+            print(df.head())
+            df.to_csv('./csv/{}.csv'.format(key3), encoding='utf-8-sig')
 
 # if __name__ == '__main__':
 #     for k, m in enumerate(keyword):
-#         if m == "삼성전자": ㅑㄴ 
-#             EmotionKdd.naver_news()
+#         if m == "삼성전자":
+#             result = EmotionKdd.naver_news(object, maxpage, m, order, s_date, e_date)
+#             df = pd.DataFrame(result)
+#             # print(df)
+#             df.columns = ['title']
+#             df.loc[:, 'keyword'] = m
+#             print('--------EmotionKdd-----------')
+#             print(df.head())
+#             df.to_csv('./csv/{}.csv'.format(m), encoding='utf-8-sig')
 #         if m == "셀트리온":
-#             EmotionKdd.naver_news()
+#             EmotionKdd.naver_news(object, maxpage, m, order, s_date, e_date)
+#             result = EmotionKdd.naver_news(object, maxpage, m, order, s_date, e_date)
+#             df = pd.DataFrame(result)
+#             # print(df)
+#             df.columns = ['title']
+#             df.loc[:, 'keyword'] = m
+#             print('--------EmotionKdd-----------')
+#             print(df.head())
+#             df.to_csv('./csv/{}.csv'.format(m), encoding='utf-8-sig')
 #         if m == "하나투어":
-#             EmotionKdd.naver_news()
+#             EmotionKdd.naver_news(object, maxpage, m, order, s_date, e_date)
+#             result = EmotionKdd.naver_news(object, maxpage, m, order, s_date, e_date)
+#             df = pd.DataFrame(result)
+#             # print(df)
+#             df.columns = ['title']
+#             df.loc[:, 'keyword'] = m
+#             print('--------EmotionKdd-----------')
+#             print(df.head())
+#             df.to_csv('./csv/{}.csv'.format(m), encoding='utf-8-sig')
 #         print(m)
 '''
 0   논어, 새로운 가르침에 겁내지 않으려면 그간의 가르침을 실행해야 한다!       
