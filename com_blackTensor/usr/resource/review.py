@@ -23,6 +23,8 @@ class Review(Resource):
         body = request.get_json()
         print('type(body): ', type(body))
         print('body: ', body)
+        print('========= Test1 ==========')
+                
         if len(body) == 0:
             return 'No parameter'
 
@@ -49,7 +51,8 @@ class Review(Resource):
             review = ReviewDao.find_by_name(username)
             print(review)
             if review:
-                return jsonify([review.json])
+                # return jsonify([review.json])
+                return jsonify([item.json for item in review])
         except Exception as e:
             print(e)
             return {'error': 'Review not found'}, 404

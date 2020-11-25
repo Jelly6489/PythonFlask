@@ -178,5 +178,8 @@ class ReviewDao(ReviewDto):
 
     @classmethod
     def find_by_name(cls, username):
-        return session.query(cls).filter(cls.username.like(f'{username}')).one()
+        return session.query(cls).filter(cls.username.like(f'{username}')).all()
 
+    @classmethod
+    def find_by_id(cls, id):
+        return session.query(cls).filter(cls.id.like(f'{id}')).all()

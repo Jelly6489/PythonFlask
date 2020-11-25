@@ -49,7 +49,8 @@ class ReviewDto(db.Model):
     __tablename__ = 'review'
     __table_args__={'mysql_collate':'utf8_general_ci'}
 
-    username: str = db.Column(db.String(100), primary_key = True, index = True)
+    id : int = db.Column(db.Integer, primary_key = True, index = True)
+    username: str = db.Column(db.String(100))
     stockname: str = db.Column(db.String(100))
     money: int = db.Column(db.Integer)
     type: str = db.Column(db.String(10))
@@ -67,17 +68,18 @@ class ReviewDto(db.Model):
     #     self.cnt = cnt
 
     def __repr__(self):
-        return f"Review(username={self.username}, stockname={self.stockname}, money={self.money}, \
+        return f"Review(id={self.id}, username={self.username}, stockname={self.stockname}, money={self.money}, \
              type={self.type}, date={self.date}, price={self.price}, cnt={self.cnt})"
 
     
     def __str__(self):
-        return f"Review(username={self.username}, stockname={self.stockname}, money={self.money}, \
+        return f"Review(id={self.id}, username={self.username}, stockname={self.stockname}, money={self.money}, \
              type={self.type}, date={self.date}, price={self.price}, cnt={self.cnt})"
 
     @property
     def json(self):
         return {
+            "id" : self.id,
             "username" : self.username,
             "stockname" : self.stockname,
             "money" : self.money,
@@ -88,6 +90,7 @@ class ReviewDto(db.Model):
         }
 
 class ReviewVo:
+    id: int = 0
     username: str = ""
     stockname: str =  ""
     money: int = 0
