@@ -19,9 +19,9 @@ class StockKdd(object):
     pre_current = datetime.now()-relativedelta(years=5)
     dx = current.strftime("%Y-%m-%d")
     dy = pre_current.strftime("%Y-%m-%d")
-
+    
     code_df = pd.read_html('http://kind.krx.co.kr/corpgeneral/corpList.do?method=download&searchType=13',header=0)[0]
-    #
+
     # 종목코드가 6자리이기 때문에 6자리를 맞춰주기 위해 설정해둠
     code_df.종목코드 = code_df.종목코드.map('{:06d}'.format)
 
@@ -33,6 +33,14 @@ class StockKdd(object):
     code_df.head()
     print('----------------stock------------------')
     print(code_df.head())
+    '''
+            name    code
+    0        DSR  155660
+    1      GS글로벌  001250
+    2  HDC현대산업개발  294870
+    3      KG케미칼  001390
+    4      LG이노텍  011070
+    '''
 
     # https://finance.naver.com/item/sise.nhn?code=005930(삼성전자)
     def get_url(self, keyword, code_df):
@@ -43,6 +51,9 @@ class StockKdd(object):
         
         print("요청 URL = {}".format(url))
         return url
+        '''
+        요청 URL = http://finance.naver.com/item/sise_day.nhn?code=068270
+        '''
 
     for k, m in enumerate(keyword):
         if m == key1:
@@ -105,7 +116,20 @@ class StockKdd(object):
         print('\n-------------------- 전체 -------------------')
         print(df)
 
+        '''
+                date      close       open  ...        low      volume  keyword
+        1858 2015-11-10  1321000.0  1336000.0  ...  1314000.0    197551.0     삼성전자
+        1857 2015-11-11  1333000.0  1321000.0  ...  1321000.0    140449.0     삼성전자
+        1856 2015-11-12  1317000.0  1333000.0  ...  1317000.0    157417.0     삼성전자
+        1855 2015-11-13  1300000.0  1317000.0  ...  1300000.0    177677.0     삼성전자
+        1854 2015-11-16  1263000.0  1291000.0  ...  1263000.0    275705.0     삼성전자
+        ...         ...        ...        ...  ...        ...         ...      ...
+        5    2020-11-20    64700.0    63900.0  ...    63900.0  15068682.0     삼성전자
+        4    2020-11-23    67500.0    64800.0  ...    64700.0  27134398.0     삼성전자
+        3    2020-11-24    67700.0    67900.0  ...    67000.0  32158235.0     삼성전자
+        2    2020-11-25    66600.0    67900.0  ...    66500.0  32447065.0     삼성전자
+        1    2020-11-26    67400.0    66100.0  ...    66000.0  11183078.0     삼성전자
+        '''
         # csv file 저장
-        # df.to_csv(keyword + '_data.csv', encoding='utf-8-sig')
         df.to_csv('./csv/{}_data.csv'.format(m), encoding='utf-8-sig')
 

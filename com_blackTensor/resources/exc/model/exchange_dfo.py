@@ -3,6 +3,8 @@ import pandas as pd
 import codecs
 import numpy as np
 import re
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
 from bs4 import BeautifulSoup
 from konlpy.tag import Twitter
 from collections import Counter
@@ -20,13 +22,19 @@ class ExchangeDfo(object):
         self.fileHandler = FileHandler()
 
     def get_ex_df(self):
-    
+        current = datetime.today()
+        pre_current = datetime.now()-relativedelta(years=5)
+        dx = current.strftime("%Y-%m-%d")
+        dy = pre_current.strftime("%Y-%m-%d")
         df = pd.read_csv('./csv/exchange_index.csv', encoding='utf-8-sig')
         
         df.rename( columns={'Unnamed: 0':'date', '미국 USD':'usd', '일본 JPY':'jpy',\
         '유럽연합 EUR' : 'eur', '중국 CNY' : 'cny'}, inplace=True )
+
+        mask = (df['date'] > dy) & (df['date'] <= dx)
+
         df = df.sort_values(by=['date'], ascending=True)
-        df.drop(df.head(2893).index, inplace=True)
+        # df.drop(df.head(2893).index, inplace=True)
         df = df.reset_index(drop=True)
         df.to_csv('./csv/exchange_reindex.csv', encoding='utf-8-sig')
         print('-----------------Ex_get_df------------------')
