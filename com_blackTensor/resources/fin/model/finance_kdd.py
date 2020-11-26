@@ -166,9 +166,24 @@ class FinanceKdd(object):
         return df
     for k, m in enumerate(keyword):
         if m == key1:
-            get_finance(0, key1, code_df)
+            result = get_finance(0, key1, code_df)
+            df = pd.DataFrame(result)
+            df.loc[:, 'keyword'] = key1
+            print('--------get_finance-----------')
+            print(df.head())
+            df.to_csv('./csv/{}_finance.csv'.format(key1), encoding='utf-8-sig')
         if m == key2:
-            get_finance(0, key2, code_df)
+            result = get_finance(0, key2, code_df)
+            df = pd.DataFrame(result)
+            df.loc[:, 'keyword'] = key2
+            print('--------get_finance-----------')
+            print(df.head())
+            df.to_csv('./csv/{}_finance.csv'.format(key2), encoding='utf-8-sig')
         if m == key3:
-            get_finance(0, key3, code_df)
+            result = get_finance(0, key3, code_df)
+            df = pd.DataFrame(result)
+            df.loc[:, 'keyword'] = key3
+            print('--------get_finance-----------')
+            print(df.head())
+            df.to_csv('./csv/{}_finance.csv'.format(key3), encoding='utf-8-sig')
     # get_finance(0, keyword, code_df)

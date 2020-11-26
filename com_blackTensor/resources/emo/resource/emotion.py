@@ -46,7 +46,7 @@ class Emotion(Resource):
             emotion = EmotionDao.find_by_keyword(keyword)
             print('=============확인==============')
             if emotion:
-                # return jsonify([emotion.json])
+                # return json.dumps(emotion)
                 return jsonify([item.json for item in emotion])
         except Exception as e:
             print(e)
@@ -77,3 +77,9 @@ class StockNews(Resource):
         except Exception as e:
             print(e)
             return {'error': 'Emotion not found'}, 404
+
+# @app.route('/api/stock/emotion', methods=['GET', 'POST'])
+# def post_data():
+#     jsonData = request.get_json()
+#     print(jsonData)
+#     return jsonData

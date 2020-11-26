@@ -52,6 +52,7 @@ class ExchangeKdd(object):
         print('==================== 환율 ok ============================')
         print(Data)
         return Data
+
         '''
                   미국 USD    일본 JPY  유럽연합 EUR  중국 CNY
         2020-11-26  1,106.20  1,060.65  1,319.25  168.65
@@ -66,4 +67,5 @@ class ExchangeKdd(object):
         2004-04-13  1,141.10  1,082.12  1,370.23  137.86
         2004-04-12  1,141.80  1,074.13  1,378.38  137.95
         '''
-    K = market_index_kdd(0)
+        
+    # K = market_index_kdd(0)

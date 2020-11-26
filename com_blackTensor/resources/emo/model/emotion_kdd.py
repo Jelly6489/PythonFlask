@@ -21,28 +21,22 @@ from sqlalchemy import Column, Integer, String, Date
 # ==================         KDD         =====================
 # ==================                     =====================
 # ============================================================
+# ====================================================== 동적 ==============================================================
 # info_main = input("="*50+"\n"+"입력 형식에 맞게 입력해주세요."+"\n"+"시작하시려면 Enter를 눌러주세요."+"\n"+"="*50)
 # maxpage = int(input("최대 크롤링할 페이지 수 입력하시오: "))
 # keyword = input("검색어 입력: ")
-keyword = ["삼성전자", "셀트리온", "하나투어"]
-key1 = "삼성전자"
-key2 = "셀트리온"
-key3 = "하나투어"
-# for k, m in enumerate(keyword):
-#     if m == "삼성전자":
-#         EmotionKdd.naver_news()
-#         print(m)
 # order = input("뉴스 검색 방식 입력(관련도순=0 최신순=1 오래된순=2): ") #관련도순=0 최신순=1 오래된순=2
 # s_date = input("시작날짜 입력(예: 2020.07.20):")
 # e_date = input("끝날짜 입력(예: 2020.10.30):")
 # info_main = input("="*50+"\n"+"입력 형식에 맞게 입력해주세요."+"\n"+"시작하시려면 Enter를 눌러주세요."+"\n"+"="*50)
+# =======================================================================================================================
+keyword = ["삼성전자", "셀트리온", "하나투어"]
+key1 = "삼성전자"
+key2 = "셀트리온"
+key3 = "하나투어"
 maxpage = 20
-# keyword = "삼성전자"
-# keyword2
-# keyword3
 order = "0"
 s_date = "2020.01.01"
-# e_date = "2020.11.10"
 e_date = datetime.today().strftime("%Y.%m.%d")
 date_text = []
 # ### HeadLine
@@ -61,7 +55,9 @@ class EmotionKdd(object):
         test_date = []
         
         for i in range(maxpage)[1:]:
-            url = r'https://search.naver.com/search.naver?&where=news&query={}&sm=tab_pge&sort={}&photo=0&field=0&reporter_article=&pd=3&ds={}&de={}&docid=&nso=so:da,p:from20201028to20201030,a:all&mynews=0&start={}&refresh_start=0'.format(keyword, order, s_date, e_date, 10*(i-1)+1)
+            url = r'https://search.naver.com/search.naver?&where=news&query={}&sm=tab_pge&sort={}&photo=0&\
+                    field=0&reporter_article=&pd=3&ds={}&de={}&docid=&nso=so:da,p:from20201028to20201030,\
+                    a:all&mynews=0&start={}&refresh_start=0'.format(keyword, order, s_date, e_date, 10*(i-1)+1)
             resp = requests.get(url)
             soup = BeautifulSoup(resp.text, 'lxml')
             if i % 100 == 0:
@@ -98,6 +94,15 @@ class EmotionKdd(object):
         # print("크롤링 날짜!! :", date_text)
         # print("날짜 데이터!!!!: ", test_date)
         return results
+
+        '''
+                                    title keyword
+    0             삼성전자, 수원·화성 공장서 잇따라 확진    삼성전자
+    1  '노조와해 시도' 강경훈 삼성 부사장 2심도 징역 1년4개월    삼성전자
+    2     [속보] 삼성전자 수원사업장 직원 6명 코로나19 확진    삼성전자
+    3               삼성이 개발 중인 롤러블폰의 모습은?    삼성전자
+    4     대기업 잉여현금흐름 1년 새 17조 증가…삼성전자 1위    삼성전자
+        '''
 ### ------------------------------------------------------
             
 
