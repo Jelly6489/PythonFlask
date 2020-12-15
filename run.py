@@ -3,7 +3,6 @@ from flask_restful import Resource, Api
 from main import app
 from flask import jsonify
 import pandas as pd
-import flask_cors CORS, cross_origin
 from flask_cors import CORS
 
 CORS(app, resources={r'*': {'origins': ['https://192.168.0.10:8080/api/access', 'http://192.168.0.10:8080']}})
