@@ -1,1 +1,7 @@
 # PythonFlask
+
+window: PythonFlask/text pip install -r requirements.txt
+
+linux: PythonFlask pip install -r requirements.txt
+
+이외에 걸리는 모듈에러는 직접 install
