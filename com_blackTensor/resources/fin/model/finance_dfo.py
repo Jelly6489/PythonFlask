@@ -59,14 +59,14 @@ class FinanceDfo(object):
         if m == key1:
             result = fina_pro(0, key1)
             df = pd.DataFrame(result)
-            df.loc[:, 'keyword'] = key3
+            df.loc[:, 'keyword'] = key1
             print('--------fin_file-----------')
             print(df.head())
             df.to_csv('./csv/{}_finance.csv'.format(key1), encoding='utf-8-sig')
         if m == key2:
             result = fina_pro(0, key2)
             df = pd.DataFrame(result)
-            df.loc[:, 'keyword'] = key3
+            df.loc[:, 'keyword'] = key2
             print('--------fin_file-----------')
             print(df.head())
             df.to_csv('./csv/{}_finance.csv'.format(key2), encoding='utf-8-sig')
